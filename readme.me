@@ -1,0 +1,54 @@
+# API utilizando Asp .NET
+
+💎 O objetivo do projeto é criar uma API utilizando o ASP . NET e interligar com o frontend que está nesse link:
+
+## **🛠️ Ferramentas e Linguagens**
+- JavaScript
+- MySQL
+- ASP .NET
+
+## ✅ Utilidades da API
+- Cadastrar no banco de dados Nome e E-mail
+
+## Endpoints
+
+#### `POST` `/user`
+
+Essa é a rota que será feita para submeter ao banco de dados o nome e email.
+
+**Requisição**
+
+Sem parâmetros de rota ou de query.
+O corpo (body) deverá possuir um objeto com as seguintes propriedades (respeitando estes nomes):
+
+- nome
+- email
+
+**RESPOSTA**
+
+Em caso de sucesso, encaminhará para a página inicial
+
+
+**REQUISITOS OBRIGATÓRIOS**
+  - Validar os campos obrigatórios:
+    - email
+    - senha
+  - Verificar se o e-mail existe
+ 
+ ## **🛠️ Como utilizar o código **
+ 
+ ### Passo 01 - Baixar o Xampp
+ Link para Dowload : https://www.apachefriends.org/download.html
+
+Iremos utilizar o localhost para criar e conectar o banco de dados MySql.
+
+### Passo 02 - Criar banco de dados
+
+Com o Xampp ligado, acesse o phpMyAdmin e crie um banco de dados com o nome blazor_db.
+
+![Captura de tela 2024-07-21 222934](https://hackmd.io/_uploads/r1Gt8NoO0.png)
+
+### Passo 03 - Inserir o .NET
+
+Agora é só baixar o sdk e instalar no computador. Siga o tutorial abaixo:
+https://dotnet.microsoft.com/pt-br/learn/aspnet/blazor-cli-tutorial/install
