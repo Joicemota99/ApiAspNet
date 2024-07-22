@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using TwUsers.Context;
 using TwUsers.Models;
 using System.Text.Json;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace TwUsers.Controllers
 {
@@ -13,13 +15,10 @@ namespace TwUsers.Controllers
     {
         public static void AddUserController(this WebApplication app)
         {
-            // Cria um grupo de rotas com o prefixo "user"
             var userGroup = app.MapGroup("/user");
 
-            // Adiciona um endpoint POST ao grupo de rotas
             userGroup.MapPost("/", async (HttpContext context, TwUsersContext dbContext) =>
             {
-                // Lê o corpo da solicitação JSON
                 var novoUser = await context.Request.ReadFromJsonAsync<User>();
 
                 if (novoUser == null)
@@ -28,15 +27,26 @@ namespace TwUsers.Controllers
                     await context.Response.WriteAsync("Usuário inválido.");
                     return;
                 }
+                var validationResults = new List<ValidationResult>();
+                var validationContext = new ValidationContext(novoUser);
+                bool isValid = Validator.TryValidateObject(novoUser, validationContext, validationResults, true);
 
-                // Adiciona o novo usuário ao DbContext
+                if(!IsValidEmail(novoUser.Email)){
+                    context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                    await context.Response.WriteAsync("E-mail inválido.");
+                    return;
+                }
                 dbContext.Users.Add(novoUser);
                 await dbContext.SaveChangesAsync();
 
-                // Define o status e retorna o usuário criado
                 context.Response.StatusCode = StatusCodes.Status201Created;
                 await context.Response.WriteAsJsonAsync(novoUser);
             });
+        }
+        private static bool IsValidEmail(string email)
+        {
+            var emailRegex = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, emailRegex);
         }
     }
 }
