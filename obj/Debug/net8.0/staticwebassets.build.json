@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "mlStW6cbxK8XqtsDvpVOXb2rMge0Ai/9rY3BFGBaWRc=",
+  "Source": "ApiRest",
+  "BasePath": "_content/ApiRest",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ApiRest\\wwwroot",
+      "Source": "ApiRest",
+      "ContentRoot": "C:\\Users\\Joice\\Documents\\Tentativa03\\ApiRest\\wwwroot\\",
+      "BasePath": "_content/ApiRest",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

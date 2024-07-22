@@ -1,0 +1,6 @@
+@ApiRest_HostAddress = https://localhost:5066
+
+GET {{ApiRest_HostAddress}}/
+Accept: application/json
+
+###
